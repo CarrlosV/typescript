@@ -1,7 +1,20 @@
-class NegociacoesView extends View<Negociacoes> {
+namespace Views {
+    import View = Views.View;
+    export class NegociacoesView extends View<Negociacoes> {
 
-    template(model: Negociacoes): string {
-        return `
+        private static montaTrNegociacao(negociacao: Negociacao): string {
+            return `
+        <tr>
+            <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() + 1}/${negociacao.data.getFullYear()}</td>
+            <td>${negociacao.quantidade}</td>
+            <td>${negociacao.valor}</td>
+            <td>${negociacao.volume}</td>                        
+        </tr>
+        `
+        }
+
+        template(model: Negociacoes): string {
+            return `
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
@@ -20,16 +33,6 @@ class NegociacoesView extends View<Negociacoes> {
             </tfoot>
         </table>               
         `
-    }
-
-    private static montaTrNegociacao (negociacao: Negociacao): string {
-        return `
-        <tr>
-            <td>${negociacao.data.getDate()}/${negociacao.data.getMonth() +1}/${negociacao.data.getFullYear()}</td>
-            <td>${negociacao.quantidade}</td>
-            <td>${negociacao.valor}</td>
-            <td>${negociacao.volume}</td>                        
-        </tr>
-        `
+        }
     }
 }
